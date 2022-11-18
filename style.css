@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: aliceblue;
+}
+.grid-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70vw;
+    height: 70vh;
+    margin: auto;
+    border: 15px solid gold;
+    border-radius: 10px;
+}
+.grid-container div{
+    width: 6.25%;
+    height: 6.26%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
