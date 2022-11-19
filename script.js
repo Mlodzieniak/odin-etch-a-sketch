@@ -26,13 +26,20 @@ function drawGrid(sideLength) {
         gridContainer.appendChild(blockElement);
     }
 }
+
 function addEventListenerToEveryElement(block, sizeSetupPrompt) {
     block.forEach(element => {
         element.addEventListener('mousedown', () => {
-            element.classList.add('block-hover');
-            // element.addEventListener('mouseover', ()=>{ 
-            //     element.classList.add('block-hover');
-            // })
+            // element.classList.add('block-hover');
+            block.forEach(element2 => {
+                element2.addEventListener('mouseover', ()=>{
+                    element2.classList.add('block-hover');
+                });
+                element2.removeEventListener('mouseup', ()=>{
+                        element2.classList.add('block-hover');
+                });
+            })
+            
         })
     });
     block.forEach(element => {
