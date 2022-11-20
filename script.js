@@ -1,12 +1,13 @@
 const gridContainer = document.querySelector('.grid-container');
-const erase = document.querySelector('#erase');
+const clear = document.querySelector('#clear');
 const gridSizeSlider = document.getElementById('grid-size-slider')
 const gridSizeValueOutput = document.getElementById('grid-size-value-output')
 const meshToggle = document.querySelector('#mesh-toggle');
+const erase = document.querySelector('#erase');
 
 gridSizeValueOutput.innerHTML = gridSizeSlider.value;
-gridSizeSlider.oninput = function(){
-    gridSizeValueOutput.innerHTML=this.value;
+gridSizeSlider.oninput = function () {
+    gridSizeValueOutput.innerHTML = this.value;
     setGridSize();
     meshFeature();
 }
@@ -32,19 +33,21 @@ function addEventListenerToEveryElement(block, sizeSetupPrompt) {
         element.addEventListener('mousedown', () => {
             // element.classList.add('block-hover');
             block.forEach(element2 => {
-                element2.addEventListener('mouseover', ()=>{
-                    element2.classList.add('block-hover');
-                });
-                element2.removeEventListener('mouseup', ()=>{
-                        element2.classList.add('block-hover');
-                });
+                element2.addEventListener('click', ()=>drawOrErase(element2, eraseToggled));
             })
-            
-        })
+        });
     });
     block.forEach(element => {
         element.style.cssText = `width: ${100 / sizeSetupPrompt}%; height: ${100 / sizeSetupPrompt}%`
     })
+}
+function drawOrErase(element2, eraseToggle) {
+    if (eraseToggle) {
+        element2.classList.remove('block-hover');
+        console.log('remove')
+        return
+    }
+    element2.classList.add('block-hover');
 }
 function gridSizeCheck() {
     let sizeSetupPrompt = 0;
@@ -58,18 +61,22 @@ function gridSizeCheck() {
     return sizeSetupPrompt
 }
 
-function eraseGrid() {
+function clearGrid() {
     const block = document.querySelectorAll('.block-element');
     block.forEach(element => {
         element.classList.remove('block-hover');
     })
 };
-function meshFeature(){
+function meshFeature() {
     const block = document.querySelectorAll('.block-element');
     block.forEach(element => {
         element.classList.toggle('block-mesh');
     })
 }
-
-erase.addEventListener('click', eraseGrid);
+let eraseToggled = false;
+erase.addEventListener('click', () => {
+    eraseToggled ? eraseToggled=false:eraseToggled=true;
+    console.log(eraseToggled)
+})
+clear.addEventListener('click', clearGrid);
 meshToggle.addEventListener('click', meshFeature);
