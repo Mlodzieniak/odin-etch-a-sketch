@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .grid-container {
@@ -25,8 +25,10 @@ body {
     min-width: 300px;
     max-height: 700px;
     max-width: 700px;
-    border-radius: 2px;
-    box-shadow: 0px 0px 80px 35px gold;
+    /* border: 5px solid gold;
+    border-radius: 2px; */
+    box-sizing: border-box;
+    box-shadow: 0px 0px 20px 20px gold;
 }
 
 .grid-container div {
@@ -37,7 +39,7 @@ body {
 }
 .block-hover{
     background-color: black;
-    transition: 0.2s;
+    transition: 0.02s;
     
 }
 .block-mesh{
@@ -62,4 +64,7 @@ button:hover{
     box-shadow: 2px 2px 5px grey;
     transition: 0.05s;
     cursor: pointer;
+}
+.button-toggle{
+    background-color: rgba(128, 128, 128, 0.342);
 }
